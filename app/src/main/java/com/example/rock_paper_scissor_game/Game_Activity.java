@@ -178,7 +178,7 @@ public class Game_Activity extends AppCompatActivity {
             }
         };
         Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(runnable, 3500);
+        handler.postDelayed(runnable, 2500);
 
     }
 }
