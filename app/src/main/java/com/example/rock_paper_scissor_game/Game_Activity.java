@@ -1,10 +1,13 @@
 package com.example.rock_paper_scissor_game;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,16 +30,22 @@ public class Game_Activity extends AppCompatActivity {
     Button GameActivityRestartButton;
     TextView GameActivityComputerChoiceTV, GameActivityGameStatusTV, GameActivityPlayerChoseItemTV, Player_Name, PlayerScore, ComputerScore;
     ImageView ComputerChoseImageIV;
+    ImageView Game_Activity_github_link;
+    TextView Game_Activity_Project_Link;
     /* --------------Quit_DialogBox--------------- */
 
     Button QuitButton;
     ImageButton QuitCloseIV;
     TextView QuitNameDialogBoxTV;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        /*<------------Night mode disable--------->*/
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         /* --------------Previous Activity Pass the Name Through the intent--------------- */
 
@@ -58,6 +67,28 @@ public class Game_Activity extends AppCompatActivity {
         ComputerScore = findViewById(R.id.Computer_Score);
         GameActivityRestartButton = findViewById(R.id.Game_Activity_Restart_Button);
         ComputerChoseImageIV = findViewById(R.id.Computer_Chose_Image_IV);
+        Game_Activity_github_link = findViewById(R.id.Game_Activity_github_link);
+        Game_Activity_Project_Link = findViewById(R.id.Game_Activity_Project_Link);
+
+        /*<------------Handle_Github_link_On_click_Listener--------->*/
+
+        Game_Activity_github_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/joymridha2004"));
+                startActivity(intent);
+            }
+        });
+
+        /*<------------Handle_Github_Project_Link_On_click_Listener--------->*/
+
+        Game_Activity_Project_Link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/joymridha2004/Rock-Paper-scissor_Game_Java_Application"));
+                startActivity(intent);
+            }
+        });
 
         /*---------------Hooks Quit DialogBox--------------->*/
 
