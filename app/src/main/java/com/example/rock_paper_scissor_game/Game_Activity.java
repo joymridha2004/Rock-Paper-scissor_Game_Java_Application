@@ -16,12 +16,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 import java.util.Random;
 
 public class Game_Activity extends AppCompatActivity {
 
+    int flag = 0;
     int computerInput = 0;
     int userInput = 0;
     int playerScore = 0, computerScore = 0;
@@ -147,69 +149,75 @@ public class Game_Activity extends AppCompatActivity {
     }
 
     public void check(View view) {
+        if (flag == 0) {
+            flag = 1;
+            switch (view.getId()) {
+                case R.id.Game_Player_Rock_TV: {
 
-        switch (view.getId()) {
-            case R.id.Game_Player_Rock_TV: {
+                    computerInput = new Random().nextInt(3);
+                    userInput = 0;
+                    GameActivityPlayerChoseItemTV.setText("You Pick Rock");
+                    break;
+                }
+                case R.id.Game_Player_Paper_TV: {
 
-                computerInput = new Random().nextInt(3);
-                userInput = 0;
-                GameActivityPlayerChoseItemTV.setText("You Pick Rock");
-                break;
-            }
-            case R.id.Game_Player_Paper_TV: {
+                    computerInput = new Random().nextInt(3);
+                    userInput = 1;
+                    GameActivityPlayerChoseItemTV.setText("You Pick Paper");
+                    break;
+                }
+                case R.id.Game_Player_Scissor_TV: {
 
-                computerInput = new Random().nextInt(3);
-                userInput = 1;
-                GameActivityPlayerChoseItemTV.setText("You Pick Paper");
-                break;
+                    computerInput = new Random().nextInt(3);
+                    userInput = 2;
+                    GameActivityPlayerChoseItemTV.setText("You Pick Scissor");
+                    break;
+                }
             }
-            case R.id.Game_Player_Scissor_TV: {
+            switch (computerInput) {
+                case 0: {
+                    ComputerChoseImageIV.setImageResource(R.drawable.rock);
+                    GameActivityComputerChoiceTV.setText("Computer Pick Rock");
+                    break;
+                }
+                case 1: {
+                    ComputerChoseImageIV.setImageResource(R.drawable.paper);
+                    GameActivityComputerChoiceTV.setText("Computer Pick Paper");
+                    break;
+                }
+                case 2: {
+                    ComputerChoseImageIV.setImageResource(R.drawable.scissor);
+                    GameActivityComputerChoiceTV.setText("Computer Pick Scissor");
+                    break;
+                }
+            }
+            if (userInput == computerInput) {
+                GameActivityGameStatusTV.setText("Draw");
+            } else if (userInput == 0 && computerInput == 2 || userInput == 1 && computerInput == 0 || userInput == 2 && computerInput == 1) {
+                GameActivityGameStatusTV.setText("Win!");
+                playerScore++;
+                PlayerScore.setText(playerScore + "");
+            } else {
+                GameActivityGameStatusTV.setText("Lose!");
+                computerScore++;
+                ComputerScore.setText(computerScore + "");
+            }
 
-                computerInput = new Random().nextInt(3);
-                userInput = 2;
-                GameActivityPlayerChoseItemTV.setText("You Pick Scissor");
-                break;
-            }
-        }
-        switch (computerInput) {
-            case 0: {
-                ComputerChoseImageIV.setImageResource(R.drawable.rock);
-                GameActivityComputerChoiceTV.setText("Computer Pick Rock");
-                break;
-            }
-            case 1: {
-                ComputerChoseImageIV.setImageResource(R.drawable.paper);
-                GameActivityComputerChoiceTV.setText("Computer Pick Paper");
-                break;
-            }
-            case 2: {
-                ComputerChoseImageIV.setImageResource(R.drawable.scissor);
-                GameActivityComputerChoiceTV.setText("Computer Pick Scissor");
-                break;
-            }
-        }
-        if (userInput == computerInput) {
-            GameActivityGameStatusTV.setText("Draw");
-        } else if (userInput == 0 && computerInput == 2 || userInput == 1 && computerInput == 0 || userInput == 2 && computerInput == 1) {
-            GameActivityGameStatusTV.setText("Win!");
-            playerScore++;
-            PlayerScore.setText(playerScore + "");
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    ComputerChoseImageIV.setImageResource(R.drawable.images);
+                    GameActivityGameStatusTV.setText(null);
+                    GameActivityComputerChoiceTV.setText("Computer Chose!");
+                    GameActivityPlayerChoseItemTV.setText("please chose item");
+                    flag = 0;
+                }
+            };
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(runnable, 2500);
+
         } else {
-            GameActivityGameStatusTV.setText("Lose!");
-            computerScore++;
-            ComputerScore.setText(computerScore + "");
+            Toast.makeText(getApplicationContext(), "Please wait for reset...", Toast.LENGTH_SHORT).show();
         }
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                ComputerChoseImageIV.setImageResource(R.drawable.images);
-                GameActivityGameStatusTV.setText(null);
-                GameActivityComputerChoiceTV.setText("Computer Chose!");
-                GameActivityPlayerChoseItemTV.setText("please chose item");
-            }
-        };
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(runnable, 2500);
-
     }
 }
