@@ -60,7 +60,6 @@ public class Game_Activity extends AppCompatActivity {
 
         /*---------------Hooks Game Activity--------------->*/
 
-        toolbar = findViewById(R.id.Game_Activity_Toolbar);
         GameActivityComputerChoiceTV = findViewById(R.id.Game_Activity_Computer_Choice_TV);
         GameActivityGameStatusTV = findViewById(R.id.Game_Activity_Game_Status_TV);
         GameActivityPlayerChoseItemTV = findViewById(R.id.Game_Activity_Player_Chose_Item_TV);
@@ -98,11 +97,8 @@ public class Game_Activity extends AppCompatActivity {
         QuitCloseIV = QuitDialog.findViewById(R.id.Quit_Close_IV);
         QuitNameDialogBoxTV = QuitDialog.findViewById(R.id.Quit_Name_DialogBox_TV);
 
-        /* --------------Toolbar--------------- */
+        /* --------------Handle onClicks on  Quit Button------------------- */
 
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         GameActivityRestartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,13 +135,6 @@ public class Game_Activity extends AppCompatActivity {
         Player_Name.setText(PlayerName);
         PlayerScore.setText("0");
         ComputerScore.setText("0");
-    }
-
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        startActivity(new Intent(Game_Activity.this, Main_Activity.class));
-        finish();
-        return true;
     }
 
     public void check(View view) {

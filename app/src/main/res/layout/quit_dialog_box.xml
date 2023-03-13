@@ -53,7 +53,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="60dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="seriously  Quit the"
+        android:text="seriously you Quit the"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

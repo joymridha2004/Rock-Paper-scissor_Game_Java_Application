@@ -10,16 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/Game_Activity_Toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/back_icon" />
-
         <ImageView
             android:id="@+id/Game_Activity_github_link"
             android:layout_width="50dp"
@@ -30,13 +20,13 @@
             android:src="@drawable/github"
             app:layout_constraintEnd_toStartOf="@+id/Game_Activity_Restart_Button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Game_Activity_Project_Link"
             android:layout_width="185dp"
             android:layout_height="25dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/edit_text_border_shape"
             android:fontFamily="@font/poppins_semibold"
@@ -54,7 +44,7 @@
             android:id="@+id/Game_Activity_Computer_Choice_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="90dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Computer Chose!"
             android:textColor="@color/black"
